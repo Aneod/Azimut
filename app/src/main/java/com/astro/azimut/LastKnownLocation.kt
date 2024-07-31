@@ -3,6 +3,7 @@ package com.astro.azimut
 import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.content.pm.PackageManager
 import android.location.Location
+import androidx.annotation.Nullable
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.LocationServices
 

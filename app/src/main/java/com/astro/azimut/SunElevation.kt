@@ -1,8 +1,6 @@
 package com.astro.azimut
 
 import android.location.Location
-import android.os.Build
-import androidx.annotation.RequiresApi
 import net.e175.klaus.solarpositioning.DeltaT
 import net.e175.klaus.solarpositioning.SPA
 import net.e175.klaus.solarpositioning.SolarPosition
@@ -10,7 +8,6 @@ import java.time.ZonedDateTime
 
 class SunElevation {
 
-    @RequiresApi(Build.VERSION_CODES.O)
     fun sunElevation(location: Location, dateTime: ZonedDateTime) {
 
         val latitude = location.latitude
