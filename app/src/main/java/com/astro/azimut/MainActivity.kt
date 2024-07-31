@@ -27,7 +27,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.astro.azimut.ui.theme.AzimutTheme
 import java.time.ZonedDateTime
-import kotlin.math.floor
 
 class MainActivity : ComponentActivity() {
 
@@ -47,10 +46,9 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-
-        TryToUseLocation().tryToUseLocation(this)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @Deprecated("")
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
@@ -67,12 +65,11 @@ fun SliderComponent() {
 
     fun slideEffect(value: Float): String {
         if(context is MainActivity) {
-            val dateTime = TryToUseLocation().getDateTime()
+            val dateTime = ZonedDateTime.now()
                 .plusHours(SliderText().getBonusHours(value))
                 .plusMinutes(SliderText().getBonusMinutes(value))
-            println("${dateTime.hour}h${dateTime.minute}")
-            TryToUseLocation().setDateTime(dateTime)
-            TryToUseLocation().tryToUseLocation(context)
+            TryToUseLocation.setDateTime(dateTime)
+            TryToUseLocation.tryToUseLocation(context)
         }
         return SliderText().getSliderText(value)
     }
@@ -86,7 +83,7 @@ fun SliderComponent() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = slideEffect(sliderPosition),
+            text = slideEffect(sliderPosition), // L'effet se lance dès le démarrage.
             fontSize = 20.sp
         )
         Slider(

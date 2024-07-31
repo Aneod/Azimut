@@ -7,7 +7,7 @@ import androidx.annotation.RequiresApi
 import java.time.ZonedDateTime
 
 @RequiresApi(Build.VERSION_CODES.O)
-class TryToUseLocation {
+object TryToUseLocation {
 
     private var dateTime: ZonedDateTime = ZonedDateTime.now()
 
