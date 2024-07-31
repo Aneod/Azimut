@@ -20,7 +20,7 @@ class SunElevation {
             longitude,
             elevation,
             DeltaT.estimate(dateTime.toLocalDate()),
-            1000.0, // reasonable default.
+            1000.0,  // reasonable default.
             15.0 // default value.
         )
 
