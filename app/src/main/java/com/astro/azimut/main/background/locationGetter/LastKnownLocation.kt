@@ -1,14 +1,17 @@
-package com.astro.azimut
+package com.astro.azimut.main.background.locationGetter
 
 import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.content.pm.PackageManager
 import android.location.Location
-import androidx.annotation.Nullable
 import androidx.core.content.ContextCompat
+import com.astro.azimut.main.MainActivity
 import com.google.android.gms.location.LocationServices
 
 class LastKnownLocation {
 
+    /**
+     * Checks the user phone location state and returns it.
+     */
     fun get(activity: MainActivity, callback: LocationCallback) {
         val selfPermission = ContextCompat.checkSelfPermission(activity, ACCESS_FINE_LOCATION)
         if (selfPermission == PackageManager.PERMISSION_GRANTED) {

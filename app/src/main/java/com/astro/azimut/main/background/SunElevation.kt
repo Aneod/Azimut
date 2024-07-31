@@ -1,4 +1,4 @@
-package com.astro.azimut
+package com.astro.azimut.main.background
 
 import android.location.Location
 import net.e175.klaus.solarpositioning.DeltaT
@@ -8,7 +8,7 @@ import java.time.ZonedDateTime
 
 class SunElevation {
 
-    fun sunElevation(location: Location, dateTime: ZonedDateTime) {
+    fun get(location: Location, dateTime: ZonedDateTime) {
 
         val latitude = location.latitude
         val longitude = location.longitude

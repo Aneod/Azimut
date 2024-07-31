@@ -1,4 +1,4 @@
-package com.astro.azimut
+package com.astro.azimut.main.sliderComponent
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,27 +16,23 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import java.time.ZonedDateTime
+import com.astro.azimut.main.background.Background
+import com.astro.azimut.main.MainActivity
 
+/**
+ * This class must be take just a slider and its visual properties plus its slide effect. NO MORE.
+ */
 @Composable
 fun SliderComponent() {
 
     val context = LocalContext.current
     var sliderPosition by remember { mutableFloatStateOf(0f) }
 
-    fun slideEffect(value: Float) {
-        if(context is MainActivity) {
-            val dateTime = ZonedDateTime.now()
-                .plusHours(FloatToTimeElements().getHoursOf(value))
-                .plusMinutes(FloatToTimeElements().getMinutesOf(value))
-            TryToUseLocation.setDateTime(dateTime)
-            TryToUseLocation.tryToUseLocation(context)
-        }
-    }
-
     fun onValueChange(value: Float) {
-        slideEffect(value)
-        sliderPosition = value
+        if(context is MainActivity) {
+            val timeToAnalyze = SliderValueToTimeElements().getNowPlus(value)
+            Background.update(context, timeToAnalyze)
+        }
     }
 
     Column(
@@ -51,7 +47,7 @@ fun SliderComponent() {
         )
         Slider(
             value = sliderPosition,
-            onValueChange = { onValueChange(it) },
+            onValueChange = { sliderPosition = it; onValueChange(sliderPosition) },
             valueRange = 0.0f..24f,
             modifier = Modifier.fillMaxWidth()
         )

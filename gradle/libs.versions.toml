@@ -7,10 +7,10 @@ junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.4"
 activityCompose = "1.9.1"
-composeBom = "2024.04.01"
+composeBom = "2024.06.00"
 playServicesLocation = "21.3.0"
 solarpositioning = "2.0.3"
-junitJunit = "4.12"
+junitJunit = "4.13.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }

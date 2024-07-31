@@ -1,4 +1,4 @@
-package com.astro.azimut
+package com.astro.azimut.main.sliderComponent
 
 import java.time.ZonedDateTime
 
@@ -13,8 +13,7 @@ class SliderText {
     }
 
     private fun getBonusTimeText(bonusHour: Long, bonusMinutes: Long): String {
-        val bonusTime = getTimeText(bonusHour, bonusMinutes)
-        return "(+$bonusTime)"
+        return getTimeText(bonusHour, bonusMinutes)
     }
 
     private fun getRealisticTime(hour: Long, minutes: Long): Pair<Long, Long> {
@@ -34,19 +33,19 @@ class SliderText {
     }
 
     /**
-     * The slider is something like '14h08 (+3h12)'.
+     * The slider text is something like '14h08 (+3h12)'.
      * <br>
      * With the current time and a given bonus hour and minutes, this method print the current
      * time PLUS the bonus time (like current:10h56 and bonus:3h12 => 14h08) and the bonus time.
      * This method take just a float who is the bonus time.
-     * @see FloatToTimeElements
+     * @see SliderValueToTimeElements
      */
-    fun getSliderText(value: Float): String {
-        val bonusHour = FloatToTimeElements().getHoursOf(value)
-        val bonusMinutes = FloatToTimeElements().getMinutesOf(value)
+    fun getSliderText(sliderValue: Float): String {
+        val bonusHour = SliderValueToTimeElements().getHoursOf(sliderValue)
+        val bonusMinutes = SliderValueToTimeElements().getMinutesOf(sliderValue)
         val targetTime = getTargetTimeText(bonusHour, bonusMinutes)
         val bonusTime = getBonusTimeText(bonusHour, bonusMinutes)
-        return "$targetTime $bonusTime"
+        return "$targetTime (+$bonusTime)"
     }
 
 }

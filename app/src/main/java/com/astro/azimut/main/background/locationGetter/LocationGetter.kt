@@ -1,18 +1,16 @@
-package com.astro.azimut
+package com.astro.azimut.main.background.locationGetter
 
 import android.location.Location
 import android.widget.Toast
-import java.time.ZonedDateTime
+import com.astro.azimut.main.background.Background
+import com.astro.azimut.main.MainActivity
 
-object TryToUseLocation {
+/**
+ * This object sort the location states (OK, null, access denied) and react in function.
+ */
+object LocationGetter {
 
-    private var dateTime: ZonedDateTime = ZonedDateTime.now()
-
-    fun setDateTime(dateTime: ZonedDateTime) {
-        this.dateTime = dateTime
-    }
-
-    fun tryToUseLocation(activity: MainActivity) {
+    fun tryToGet(activity: MainActivity) {
         LastKnownLocation().get(activity, object : LastKnownLocation.LocationCallback {
             override fun onLocation(location: Location) {
                 update(location)
@@ -23,20 +21,21 @@ object TryToUseLocation {
             }
 
             override fun permissionNotGranted() {
-                requestLocationPermission(activity)
+                askAuthorizations(activity)
             }
         })
     }
 
     private fun update(location: Location) {
-        SunElevation().sunElevation(location, dateTime)
+        Background.apply(location)
     }
 
     private fun showNullLocationMessage(activity: MainActivity) {
         Toast.makeText(activity, "Invalid location", Toast.LENGTH_SHORT).show()
+        Background.makeNeutral()
     }
 
-    private fun requestLocationPermission(activity: MainActivity) {
+    private fun askAuthorizations(activity: MainActivity) {
         RequestLocationPermission().requestLocationPermission(activity)
     }
 }
