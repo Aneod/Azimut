@@ -132,7 +132,6 @@ fun MapScreen(onMapViewInitialized: (MapView) -> Unit) {
         .position(montparnasseTowerCoordinates)
         .title("Marker")
 
-
     Box(modifier = Modifier.fillMaxSize()) {
         AndroidView(
             factory = {
