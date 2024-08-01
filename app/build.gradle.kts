@@ -69,4 +69,9 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation (libs.mapsforge.map.android)
+    implementation (libs.mapsforge.map.awt)
+    implementation (libs.mapsforge.themes)
+
 }
