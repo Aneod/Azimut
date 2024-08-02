@@ -7,7 +7,7 @@ The sun elevation is not an approximation nor a fixed value.
 Not available on Google Play Store because testers are required.
 If you are interested try to contact me : alexis.guibert7@gmail.com
 
-## Functionality
+## Functionalities
 
 By choosing a geographic location (by selection on a map or by geolocation), and by choosing time within 24 hours, you will see a simplistic representation of the sun has a height representing that observed on site and more or less east/west depending on the time chosen.
 
