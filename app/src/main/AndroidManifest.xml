@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Azimut"
         tools:targetApi="31">
         <activity
+            android:name=".main.MapActivity"
+            android:exported="false" />
+        <activity
             android:name=".main.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.Azimut">
