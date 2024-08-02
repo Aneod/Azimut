@@ -19,3 +19,7 @@ By choosing a geographic location (by selection on a map or by geolocation), and
 ![Sun at dawn](app/src/main/java/com/astro/azimut/demoImages/morning.jpg)
 ![Solar noon](app/src/main/java/com/astro/azimut/demoImages/noon.jpg)
 ![Sun at dusk](app/src/main/java/com/astro/azimut/demoImages/evening.jpg)
+
+## Licence
+
+This project is under the MIT license. See the LICENSE.txt file for details.
