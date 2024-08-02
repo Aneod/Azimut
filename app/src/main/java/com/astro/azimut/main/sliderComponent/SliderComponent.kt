@@ -16,10 +16,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.astro.azimut.main.ChosenCoordinates
 import com.astro.azimut.main.MainActivity
 import com.astro.azimut.main.background.CurrentAnalyzedTime
-import com.astro.azimut.main.background.SunElevation
 
 /**
  * This class must be take just a slider and its visual properties plus its slide effect. NO MORE.
@@ -28,26 +26,21 @@ import com.astro.azimut.main.background.SunElevation
 fun SliderComponent() {
 
     val context = LocalContext.current
-    var sliderPosition by remember { mutableFloatStateOf(0f) }
+    var sliderPosition by remember { mutableFloatStateOf(CurrentAnalyzedTime.getSliderValue()) }
 
     fun onValueChange(value: Float) {
         if(context is MainActivity) {
             val timeToAnalyze = SliderValueToTimeElements().getNowPlus(value)
             CurrentAnalyzedTime.setDateTime(timeToAnalyze)
-
-            val latLng = ChosenCoordinates.get()
-            val dateTime = CurrentAnalyzedTime.getDateTime()
-            val elevation = SunElevation().get(latLng, dateTime)
-
-            val floatHour = timeToAnalyze.hour + timeToAnalyze.minute / 60.0f
-            context.updateSunPosition(floatHour, elevation)
+            CurrentAnalyzedTime.setSliderValue(value)
+            context.updateSunPosition()
         }
     }
 
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(24.dp),
+            .padding(10.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
@@ -58,7 +51,7 @@ fun SliderComponent() {
             value = sliderPosition,
             onValueChange = { sliderPosition = it; onValueChange(sliderPosition) },
             valueRange = 0.0f..24f,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth().padding(30.dp, 0.dp)
         )
     }
 }

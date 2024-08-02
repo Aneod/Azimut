@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -25,6 +24,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.astro.azimut.main.background.locationGetter.LocationGetter
+import com.astro.azimut.main.background.locationGetter.RequestLocationPermission
 import com.astro.azimut.ui.theme.AzimutTheme
 import org.maplibre.android.MapLibre
 import org.maplibre.android.WellKnownTileServer
@@ -103,6 +103,12 @@ class MapActivity : ComponentActivity() {
         if (::mapView.isInitialized) {
             mapView.onSaveInstanceState(outState)
         }
+    }
+
+    @Deprecated("")
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        RequestLocationPermission().onRequestPermissionsResult(this, requestCode, grantResults)
     }
 }
 

@@ -17,7 +17,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
-import com.astro.azimut.main.background.locationGetter.RequestLocationPermission
 import com.astro.azimut.main.sliderComponent.SliderComponent
 import com.astro.azimut.ui.theme.AzimutTheme
 import org.maplibre.android.MapLibre
@@ -40,7 +39,6 @@ class MainActivity : ComponentActivity() {
         sunPositionViewModel = ViewModelProvider(this)[SunPositionViewModel::class.java]
 
         setContent {
-
             AzimutTheme {
                 Scaffold { innerPadding ->
 
@@ -59,16 +57,11 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+        updateSunPosition()
     }
 
-    fun updateSunPosition(hour: Float, elevation: Double) {
-        sunPositionViewModel.setPosition(hour, elevation)
-    }
-
-    @Deprecated("")
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        RequestLocationPermission().onRequestPermissionsResult(this, requestCode, grantResults)
+    fun updateSunPosition() {
+        sunPositionViewModel.setPosition()
     }
 }
 

@@ -3,6 +3,7 @@ package com.astro.azimut.main
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.lifecycle.ViewModel
 import com.astro.azimut.main.background.CurrentAnalyzedTime
+import com.astro.azimut.main.background.SunElevation
 import net.e175.klaus.solarpositioning.DeltaT
 import net.e175.klaus.solarpositioning.SPA
 import net.e175.klaus.solarpositioning.SunriseResult
@@ -10,10 +11,16 @@ import kotlin.math.cos
 
 class SunPositionViewModel : ViewModel() {
 
+    private val sunXPosMaxValue = .8f
+
     var xPercent = mutableFloatStateOf(0.5f)
     var yPercent = mutableFloatStateOf(0.5f)
 
-    fun setPosition(hour: Float, elevation: Double) {
+    fun setPosition() {
+        val latLng = ChosenCoordinates.get()
+        val dateTime = CurrentAnalyzedTime.getDateTime()
+        val elevation = SunElevation().get(latLng, dateTime)
+        val hour = CurrentAnalyzedTime.getDateTime().hour + CurrentAnalyzedTime.getDateTime().minute / 60.0f
         xPercent.floatValue = hourToPercent(hour)
         yPercent.floatValue = elevationToPercent(elevation)
     }
@@ -54,6 +61,7 @@ class SunPositionViewModel : ViewModel() {
         // 0.0f -> .5f
         // 1.0f -> 1.0f
 
-        return ((pseudoYPos + 1) / 2).toFloat()
+        val limitedYPos = pseudoYPos * sunXPosMaxValue
+        return ((limitedYPos + 1) / 2).toFloat()
     }
 }

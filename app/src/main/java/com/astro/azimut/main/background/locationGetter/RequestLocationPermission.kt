@@ -19,12 +19,10 @@ class RequestLocationPermission {
         )
     }
 
-    fun onRequestPermissionsResult(activity: MainActivity, requestCode: Int, grantResults: IntArray) {
+    fun onRequestPermissionsResult(activity: Activity, requestCode: Int, grantResults: IntArray) {
         if (requestCode == requestLocationPermission) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 LocationGetter.tryToGet(activity)
-            } else {
-                Toast.makeText(activity, "Authorisation denied", Toast.LENGTH_SHORT).show()
             }
         }
     }

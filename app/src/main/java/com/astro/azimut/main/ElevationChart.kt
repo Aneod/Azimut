@@ -7,10 +7,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.graphics.drawscope.clipPath
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+
+private const val sunRadius = 20f
 
 @Composable
 fun ElevationChart(height: Dp, xPercent: Float, yPercent: Float) {
@@ -22,34 +26,36 @@ fun ElevationChart(height: Dp, xPercent: Float, yPercent: Float) {
         contentAlignment = Alignment.Center
     ) {
         Canvas(modifier = Modifier.fillMaxSize()) {
-            drawBackground(Color.Blue)
-            drawGround()
+            drawBackground(yPercent)
             val canvasWidth = size.width
             val canvasHeight = size.height
             val xPosition = xPercent * canvasWidth
             val yPosition = canvasHeight - (yPercent * canvasHeight)
-            drawSun(xPosition, yPosition)
+
+            val clipPath = Path().apply {
+                moveTo(0f, canvasHeight)
+                lineTo(canvasWidth, canvasHeight)
+                lineTo(canvasWidth, 0f)
+                lineTo(0f, 0f)
+                close()
+            }
+
+            clipPath(clipPath) {
+                drawSun(xPosition, yPosition)
+            }
         }
     }
 }
 
-fun DrawScope.drawBackground(color: Color) {
-    drawRect(color = color, size = size)  // Draw a rectangle with the background color
-}
-
-fun DrawScope.drawGround() {
-    drawLine(
-        color = Color.Black,
-        start = Offset(0f, size.height),
-        end = Offset(size.width, size.height),
-        strokeWidth = 20f
-    )
+fun DrawScope.drawBackground(sunElevation: Float) {
+    val color = SkyColor().getBySunElevation(sunElevation)
+    drawRect(color = color, size = size)
 }
 
 fun DrawScope.drawSun(x: Float, y: Float) {
     drawCircle(
         color = Color.Yellow,
-        radius = 40f,
+        radius = sunRadius,
         center = Offset(x, y)
     )
 }

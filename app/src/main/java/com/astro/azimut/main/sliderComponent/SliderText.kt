@@ -1,6 +1,13 @@
 package com.astro.azimut.main.sliderComponent
 
+import android.util.Log
+import com.astro.azimut.main.ChosenCoordinates
+import com.astro.azimut.main.TimezoneMapper
+import java.time.Instant
+import java.time.LocalDateTime
+import java.time.ZoneId
 import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
 
 class SliderText {
 
@@ -24,8 +31,19 @@ class SliderText {
         return Pair(increasedHours, increasedMinutes)
     }
 
+    private fun getLocalTime(): LocalDateTime {
+        val resultTimeZone = TimezoneMapper.latLngToTimezoneString(
+            ChosenCoordinates.getLatitude(),
+            ChosenCoordinates.getLongitude()
+        )
+        val zoneId = ZoneId.of(resultTimeZone)
+        val currentInstant = Instant.now()
+        val localDateTime = LocalDateTime.ofInstant(currentInstant, zoneId)
+        return localDateTime
+    }
+
     private fun getTargetTimeText(bonusHour: Long, bonusMinutes: Long): String {
-        val targetTime = ZonedDateTime.now()
+        val targetTime = getLocalTime()
         val hour = targetTime.hour + bonusHour
         val minutes = targetTime.minute + bonusMinutes
         val realisticTime = getRealisticTime(hour, minutes)
@@ -45,7 +63,7 @@ class SliderText {
         val bonusMinutes = SliderValueToTimeElements().getMinutesOf(sliderValue)
         val targetTime = getTargetTimeText(bonusHour, bonusMinutes)
         val bonusTime = getBonusTimeText(bonusHour, bonusMinutes)
-        return "$targetTime (+$bonusTime)"
+        return "$targetTime (in $bonusTime)"
     }
 
 }

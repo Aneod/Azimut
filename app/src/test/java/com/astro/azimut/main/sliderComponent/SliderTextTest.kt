@@ -36,7 +36,7 @@ class SliderTextTest {
         val correctedMinutes = targetMinutes % 60
         val targetTime = "${correctedHour}h${addZero(correctedMinutes)}"
         val bonusTime = "${bonusHour}h${addZero(bonusMinutes)}"
-        val expected = "$targetTime (+$bonusTime)"
+        val expected = "$targetTime (in $bonusTime)"
         return expected == actual
     }
 

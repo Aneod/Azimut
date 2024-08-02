@@ -14,4 +14,15 @@ object CurrentAnalyzedTime {
         CurrentAnalyzedTime.dateTime = dateTime
     }
 
+
+    private var sliderValue: Float = 0.0f
+
+    fun getSliderValue(): Float {
+        return sliderValue
+    }
+
+    fun setSliderValue(sliderValue: Float) {
+        this.sliderValue = sliderValue
+    }
+
 }
