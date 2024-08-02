@@ -1,7 +1,5 @@
 # Azimut
 
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-
 A mobile application in Java and Kotlin allowing you to visualize the elevation of the sun in the sky for a given location and time up to the next 24 hours.
 
 The app use the solarpositioning library (https://github.com/klausbrunner/solarpositioning/tree/master).
