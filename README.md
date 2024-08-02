@@ -1,2 +1,7 @@
 # Azimut
-An application to know precisely the sun elevation in the sky for a given place and time until 24 hours.
+A mobile application in Java and Kotlin allowing you to visualize the elevation of the sun in the sky for a given location and time up to the next 24 hours.
+
+## Screenshots
+
+![Capture d'écran 1](demoImages/morning)
+![Capture d'écran 2](demoImages/evening)
