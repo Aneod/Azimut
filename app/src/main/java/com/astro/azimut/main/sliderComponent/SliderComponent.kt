@@ -39,7 +39,8 @@ fun SliderComponent() {
             val dateTime = CurrentAnalyzedTime.getDateTime()
             val elevation = SunElevation().get(latLng, dateTime)
 
-            context.updateSunPosition(.5f, elevation.toFloat())
+            val floatHour = timeToAnalyze.hour + timeToAnalyze.minute / 60.0f
+            context.updateSunPosition(floatHour, elevation)
         }
     }
 

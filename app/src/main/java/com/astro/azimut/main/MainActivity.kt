@@ -61,8 +61,8 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    fun updateSunPosition(xPercent: Float, yPercent: Float) {
-        sunPositionViewModel.setPosition(xPercent, yPercent)
+    fun updateSunPosition(hour: Float, elevation: Double) {
+        sunPositionViewModel.setPosition(hour, elevation)
     }
 
     @Deprecated("")
