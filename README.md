@@ -6,6 +6,10 @@ The sun elevation is not an approximation nor a fixed value. The app use the sol
 Not available on Google Play Store because testers are required.
 If you are interested try to contact me : alexis.guibert7@gmail.com
 
+## Functionality
+
+By choosing a geographic location (by selection on a map or by geolocation), and by choosing time within 24 hours, you will see a simplistic representation of the sun has a height representing that observed on site and more or less east/west depending on the time chosen.
+
 ## Screenshots
 
 ![Use of map (1/2)](app/src/main/java/com/astro/azimut/demoImages/map1.jpg)
