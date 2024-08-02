@@ -1,2 +1,2 @@
 # Azimut
-An application to know precisely the ambient light outside a few hours in advance.
+An application to know precisely the sun elevation in the sky for a given place and time until 24 hours.
