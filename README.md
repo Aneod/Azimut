@@ -3,5 +3,5 @@ A mobile application in Java and Kotlin allowing you to visualize the elevation 
 
 ## Screenshots
 
-![Capture d'écran 1](app/src/main/java/com/astro/azimut/demoImages/morning)
+![Capture d'écran 1](app/src/main/java/com/astro/azimut/demoImages/morning.jpg)
 ![Capture d'écran 2](demoImages/evening)
