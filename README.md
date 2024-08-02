@@ -1,7 +1,8 @@
 # Azimut
 A mobile application in Java and Kotlin allowing you to visualize the elevation of the sun in the sky for a given location and time up to the next 24 hours.
 
-The sun elevation is not an approximation nor a fixed value. The app use the solarpositioning library (https://github.com/klausbrunner/solarpositioning/tree/master).
+The app use the solarpositioning library (https://github.com/klausbrunner/solarpositioning/tree/master).
+The sun elevation is not an approximation nor a fixed value. 
 
 Not available on Google Play Store because testers are required.
 If you are interested try to contact me : alexis.guibert7@gmail.com
